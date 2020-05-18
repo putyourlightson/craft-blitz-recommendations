@@ -50,6 +50,14 @@ class RecommendationsUtility extends Utility
     /**
      * @inheritdoc
      */
+    public static function badgeCount(): int
+    {
+        return BlitzRecommendations::$plugin->recommendations->getTotal();
+    }
+
+    /**
+     * @inheritdoc
+     */
     public static function contentHtml(): string
     {
         return Craft::$app->getView()->renderTemplate('blitz-recommendations/_utility', [

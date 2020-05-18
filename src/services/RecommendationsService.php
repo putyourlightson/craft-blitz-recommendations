@@ -31,6 +31,16 @@ class RecommendationsService extends Component
     }
 
     /**
+     * Gets total recommendations.
+     *
+     * @return int
+     */
+    public function getTotal(): int
+    {
+        return RecommendationRecord::find()->count();
+    }
+
+    /**
      * Gets all recommendations.
      *
      * @return RecommendationModel[]
@@ -50,6 +60,26 @@ class RecommendationsService extends Component
         }
 
         return $recommendations;
+    }
+
+    /**
+     * Clears all recommendations.
+     */
+    public function clearAll()
+    {
+        RecommendationRecord::deleteAll();
+    }
+
+    /**
+     * Clears a recommendation.
+     *
+     * @param int $id
+     */
+    public function clear(int $id)
+    {
+        RecommendationRecord::deleteAll([
+            'id' => $id,
+        ]);
     }
 
     /**
