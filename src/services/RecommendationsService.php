@@ -7,12 +7,17 @@ namespace putyourlightson\blitzrecommendations\services;
 
 use Craft;
 use craft\base\Component;
+use craft\base\Field;
 use craft\elements\db\ElementQuery;
 use putyourlightson\blitzrecommendations\models\RecommendationModel;
 use putyourlightson\blitzrecommendations\records\RecommendationRecord;
 use Twig\Template as TwigTemplate;
 use yii\base\Application;
 
+/**
+ * @property int $total
+ * @property RecommendationModel[] $all
+ */
 class RecommendationsService extends Component
 {
     /**
@@ -171,13 +176,14 @@ class RecommendationsService extends Component
 
                 if ($template instanceof TwigTemplate) {
                     $templateName = $template->getTemplateName();
-                    $templatePath = Craft::$app->getView()->resolveTemplate($templateName) ?: $templateName;
 
-                    return $templatePath;
+                    return Craft::$app->getView()->resolveTemplate($templateName) ?: $templateName;
                 }
 
                 return '';
             }
         }
+
+        return '';
     }
 }

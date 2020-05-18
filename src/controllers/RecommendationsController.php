@@ -7,7 +7,7 @@ namespace putyourlightson\blitzrecommendations\controllers;
 
 use Craft;
 use craft\web\Controller;
-use craft\web\Response;
+use yii\web\Response;
 use putyourlightson\blitzrecommendations\BlitzRecommendations;
 
 class RecommendationsController extends Controller
