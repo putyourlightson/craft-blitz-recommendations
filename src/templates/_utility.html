@@ -1,0 +1,33 @@
+{% if recommendations|length %}
+    <div class="buttons first">
+        <div id="clearall" class="btn submit">{{ "Clear all"|t('app') }}</div>
+    </div>
+{% endif %}
+
+
+<div class="readable">
+    <p id="norecommendations"{% if recommendations|length %} class="hidden"{% endif %}>{{ "No recommendations to report."|t('app') }}</p>
+
+    {% if recommendations|length %}
+        <table id="deprecationerrors" class="data fullwidth fixed-layout">
+            <thead>
+                <tr>
+                    <th>{{ 'Recommendation'|t('blitz') }}</th>
+                    <th>{{ 'Template'|t('blitz') }}</th>
+                    <th class="nowrap">{{ "Last Occurrence"|t('blitz') }}</th>
+                    <th style="width: 14px;"></th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for recommendation in recommendations %}
+                <tr data-id="{{ recommendation.id }}">
+                    <td>{{ recommendation.message|md }}</td>
+                    <td class="code">{{ recommendation.template|e|replace('/', '/<wbr>')|raw }}</td>
+                    <td>{{ recommendation.dateUpdated|timestamp }}</td>
+                    <td><a class="delete icon" title="{{ 'Delete'|t('app') }}" role="button"></a></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+</div>
