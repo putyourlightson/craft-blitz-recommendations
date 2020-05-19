@@ -115,10 +115,10 @@ class RecommendationsService extends Component
             $field = Craft::$app->getFields()->getFieldById($fieldId);
 
             $message = Craft::t('blitz-recommendations', 'Eager-load the `{fieldName}` field.', ['fieldName' => $field->name]);
-            $info = Craft::t('blitz-recommendations', 'Use the `with` parameter to eager-load sub-elements of `{fieldName}`. {link}<br>{example}', [
+            $info = Craft::t('blitz-recommendations', 'Use the `with` parameter to eager-load sub-elements of `{fieldName}`.<br>{example}<br>{link}', [
                 'fieldName' => $field->name,
-                'link' => '<a href="https://docs.craftcms.com/v3/dev/eager-loading-elements.html" class="go" target="_blank">Docs</a>',
                 'example' => '`{% set entries = craft.entries.with([\''.$field->handle.'\']).all() %}`',
+                'link' => '<a href="https://docs.craftcms.com/v3/dev/eager-loading-elements.html" class="go" target="_blank">Docs</a>',
             ]);
 
             $this->add($fieldId, $message, $info);
