@@ -29,7 +29,12 @@
                 <tbody>
                 {% for recommendation in recommendations %}
                     <tr data-id="{{ recommendation.id }}">
-                        <td>{{ recommendation.message|md }}</td>
+                        <td>
+                            {{ recommendation.message|md|replace({'<p>': '', '</p>': ''})|raw }}
+                            {% if recommendation.info %}
+                                <span class="info" style="vertical-align: top;">{{ recommendation.info|md|replace({'<p>': '', '</p>': ''})|raw }}</span>
+                            {% endif %}
+                        </td>
                         <td class="code">{{ recommendation.template|e|replace('/', '/<wbr>')|raw }}</td>
                         <td>{{ recommendation.dateUpdated|timestamp }}</td>
                         <td>

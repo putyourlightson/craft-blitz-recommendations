@@ -22,6 +22,7 @@ class Install extends Migration
                 'key' => $this->string()->notNull(),
                 'template' => $this->string(),
                 'message' => $this->text(),
+                'info' => $this->text(),
                 'dateCreated' => $this->dateTime()->notNull(),
                 'dateUpdated' => $this->dateTime()->notNull(),
                 'uid' => $this->uid(),

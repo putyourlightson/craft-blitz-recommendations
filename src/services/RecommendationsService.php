@@ -114,9 +114,14 @@ class RecommendationsService extends Component
             /** @var Field $field */
             $field = Craft::$app->getFields()->getFieldById($fieldId);
 
-            $message = Craft::t('blitz', 'Eager-load the `{fieldName}` field.', ['fieldName' => $field->name]);
+            $message = Craft::t('blitz-recommendations', 'Eager-load the `{fieldName}` field.', ['fieldName' => $field->name]);
+            $info = Craft::t('blitz-recommendations', 'Use the `with` parameter to eager-load sub-elements of `{fieldName}`. {link}<br>{example}', [
+                'fieldName' => $field->name,
+                'link' => '<a href="https://docs.craftcms.com/v3/dev/eager-loading-elements.html" class="go" target="_blank">Docs</a>',
+                'example' => '`{% set entries = craft.entries.with([\''.$field->handle.'\']).all() %}`',
+            ]);
 
-            $this->add($fieldId, $message);
+            $this->add($fieldId, $message, $info);
         }
     }
 
@@ -125,8 +130,9 @@ class RecommendationsService extends Component
      *
      * @param string $key
      * @param string $message
+     * @param string|null $info
      */
-    public function add(string $key, string $message)
+    public function add(string $key, string $message, string $info = '')
     {
         $template = $this->_getTemplate();
 
@@ -134,6 +140,7 @@ class RecommendationsService extends Component
             'key' => $key,
             'template' => $template,
             'message' => $message,
+            'info' => $info,
         ]);
     }
 
@@ -155,6 +162,7 @@ class RecommendationsService extends Component
                     [
                         'template' => $recommendation->template,
                         'message' => $recommendation->message,
+                        'info' => $recommendation->info,
                     ])
                 ->execute();
         }

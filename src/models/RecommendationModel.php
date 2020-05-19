@@ -31,6 +31,11 @@ class RecommendationModel extends Model
     public $message;
 
     /**
+     * @var string|null
+     */
+    public $info;
+
+    /**
      * @var DateTime
      */
     public $dateUpdated;

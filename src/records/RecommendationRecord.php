@@ -13,6 +13,7 @@ use DateTime;
  * @property string $key
  * @property string $template
  * @property string $message
+ * @property string $info
  * @property DateTime $lastUpdated
  */
 class RecommendationRecord extends ActiveRecord
