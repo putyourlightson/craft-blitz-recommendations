@@ -4,6 +4,8 @@
 
 Adds a utility that provides templating performance recommendations for Craft CMS 3.
 
+While this plugin works seamlessly with [Blitz](https://putyourlightson.com/plugins/blitz), there is no dependency between the plugins. In other words, this plugin can be installed and used for free _without_ Blitz. 
+
 > This plugin is currently in beta. Please contribute by reporting any bugs or issues.
 
 ![Utility](./docs/blitz-recommendations-utility.png)
