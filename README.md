@@ -2,13 +2,15 @@
 
 # Blitz Recommendations Plugin
 
-Provides performance recommendations in a utility for Craft CMS 3.
+Adds a utility that provides templating performance recommendations for Craft CMS 3.
 
 > This plugin is currently in beta. Please contribute by reporting any bugs or issues.
 
 ![Utility](./docs/blitz-recommendations-utility.png)
 
-## Eager-Loading Recommendations
+## Recommendation Types
+
+### Eager-Loading Recommendations
 
 Recommendations for eager-loading sub-elements of relation fields.
 
