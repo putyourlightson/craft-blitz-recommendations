@@ -11,6 +11,8 @@ use craft\base\Field;
 use craft\elements\db\ElementQuery;
 use putyourlightson\blitzrecommendations\models\RecommendationModel;
 use putyourlightson\blitzrecommendations\records\RecommendationRecord;
+use ReflectionClass as ReflectionClassAlias;
+use Twig\Template;
 use Twig\Template as TwigTemplate;
 use yii\base\Application;
 
@@ -178,9 +180,13 @@ class RecommendationsService extends Component
         // Get the debug backtrace
         $traces = debug_backtrace();
 
+        // Get template class filename
+        $reflector = new ReflectionClassAlias(Template::class);
+        $filename = $reflector->getFileName();
+
         foreach ($traces as $key => $trace) {
-            if (!empty($trace['file']) && $trace['function'] == 'twig_get_attribute') {
-                $template = $traces[$key + 2]['object'] ?? null;
+            if (!empty($trace['file']) && $trace['file'] == $filename) {
+                $template = $trace['object'] ?? null;
 
                 if ($template instanceof TwigTemplate) {
                     $templateName = $template->getTemplateName();

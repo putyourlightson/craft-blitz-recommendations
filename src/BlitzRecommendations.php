@@ -50,12 +50,12 @@ class BlitzRecommendations extends Plugin
         // Register element query prepare event
         Event::on(ElementQuery::class, ElementQuery::EVENT_BEFORE_PREPARE,
             function(CancelableEvent $event) {
-                if (Craft::$app->getResponse()->getIsOk()) {
-                    /** @var ElementQuery $elementQuery */
-                    $elementQuery = $event->sender;
-                    $this->recommendations->checkElementQuery($elementQuery);
-                }
-            }
+                /** @var ElementQuery $elementQuery */
+                $elementQuery = $event->sender;
+                $this->recommendations->checkElementQuery($elementQuery);
+            },
+            null,
+            false
         );
     }
 
