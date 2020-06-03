@@ -1,22 +1,22 @@
-<p align="center"><img width="130" src="https://raw.githubusercontent.com/putyourlightson/craft-blitz-tips/v1/src/icon.svg"></p>
+<p align="center"><img width="130" src="https://raw.githubusercontent.com/putyourlightson/craft-blitz-recommendations/v1/src/icon.svg"></p>
 
-# Blitz Tips Plugin for Craft CMS 3
+# Blitz Recommendations Plugin for Craft CMS 3
 
-Adds a utility that provides templating performance tips for Craft CMS 3.
+Adds a utility that provides templating performance recommendations for Craft CMS 3.
 
 While this plugin works seamlessly with the [Blitz plugin](https://putyourlightson.com/plugins/blitz), there is no dependency between them. In other words, this plugin can be installed and used for free with _or_ without Blitz. 
 
 > This plugin is currently in beta. Please contribute by reporting any bugs or issues.
 
-![Utility](./docs/blitz-tips-utility.png)
+![Utility](./docs/blitz-recommendations-utility.png)
 
 ## Recommendation Types
 
-### Eager-Loading Tips
+### Eager-Loading Recommendations
 
-Tips for eager-loading sub-elements of relation fields.
+Recommendations for eager-loading sub-elements of relation fields.
 
-![Tips](./docs/blitz-tips.png)
+![Recommendations](./docs/blitz-recommendations.png)
 
 ## Requirements
 
@@ -27,7 +27,7 @@ Craft CMS 3.0.0 or later.
 Install the plugin using composer.
 
 ```
-composer require putyourlightson/craft-blitz-tips:^1.0.0-beta.1
+composer require putyourlightson/craft-blitz-recommendations:^1.0.0-beta.1
 ```
 
 ## License

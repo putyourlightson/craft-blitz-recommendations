@@ -2,9 +2,9 @@
 
     {{ csrfInput() }}
 
-    {% if tips|length %}
+    {% if recommendations|length %}
         <div class="buttons first">
-            <a class="btn submit formsubmit" data-action="blitz-tips/tips/clear-all">
+            <a class="btn submit formsubmit" data-action="blitz-recommendations/recommendations/clear-all">
                 {{ "Clear all"|t('app') }}
             </a>
         </div>
@@ -12,22 +12,22 @@
 
 
     <div class="readable">
-        <p id="notips"{% if tips|length %} class="hidden"{% endif %}>
-            {{ "No tips."|t('app') }}
+        <p id="norecommendations"{% if recommendations|length %} class="hidden"{% endif %}>
+            {{ "No recommendations."|t('app') }}
         </p>
 
-        {% if tips|length %}
+        {% if recommendations|length %}
             <table id="deprecationerrors" class="data fullwidth fixed-layout">
                 <thead>
                     <tr>
-                        <th>{{ 'Recommendation'|t('blitz-tips') }}</th>
-                        <th>{{ 'Template'|t('blitz-tips') }}</th>
-                        <th class="nowrap">{{ "Last Occurrence"|t('blitz-tips') }}</th>
+                        <th>{{ 'Recommendation'|t('blitz-recommendations') }}</th>
+                        <th>{{ 'Template'|t('blitz-recommendations') }}</th>
+                        <th class="nowrap">{{ "Last Occurrence"|t('blitz-recommendations') }}</th>
                         <th style="width: 14px;"></th>
                     </tr>
                 </thead>
                 <tbody>
-                {% for recommendation in tips %}
+                {% for recommendation in recommendations %}
                     <tr data-id="{{ recommendation.id }}">
                         <td>
                             {{ recommendation.message|md|replace({'<p>': '', '</p>': ''})|raw }}
@@ -38,7 +38,7 @@
                         <td class="code">{{ recommendation.template|e|replace('/', '/<wbr>')|raw }}</td>
                         <td>{{ recommendation.dateUpdated|timestamp }}</td>
                         <td>
-                            <a class="delete icon formsubmit" data-action="blitz-tips/tips/clear" data-param="id" data-value="{{ recommendation.id }}" title="{{ 'Delete'|t('app') }}" role="button"></a>
+                            <a class="delete icon formsubmit" data-action="blitz-recommendations/recommendations/clear" data-param="id" data-value="{{ recommendation.id }}" title="{{ 'Delete'|t('app') }}" role="button"></a>
                         </td>
                     </tr>
                 {% endfor %}

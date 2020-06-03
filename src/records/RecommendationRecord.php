@@ -3,7 +3,7 @@
  * @copyright Copyright (c) PutYourLightsOn
  */
 
-namespace putyourlightson\blitztips\records;
+namespace putyourlightson\blitzrecommendations\records;
 
 use craft\db\ActiveRecord;
 use DateTime;
@@ -28,6 +28,6 @@ class RecommendationRecord extends ActiveRecord
      */
     public static function tableName(): string
     {
-        return '{{%blitz_tips}}';
+        return '{{%blitz_recommendations}}';
     }
 }
