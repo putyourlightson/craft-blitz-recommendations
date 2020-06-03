@@ -3,7 +3,7 @@
  * @copyright Copyright (c) PutYourLightsOn
  */
 
-namespace putyourlightson\blitzrecommendations\models;
+namespace putyourlightson\blitztips\models;
 
 use craft\base\Model;
 use DateTime;

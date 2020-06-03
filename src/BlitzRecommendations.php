@@ -3,7 +3,7 @@
  * @copyright Copyright (c) PutYourLightsOn
  */
 
-namespace putyourlightson\blitzrecommendations;
+namespace putyourlightson\blitztips;
 
 use Craft;
 use craft\base\Plugin;
@@ -11,17 +11,17 @@ use craft\elements\db\ElementQuery;
 use craft\events\CancelableEvent;
 use craft\events\RegisterComponentTypesEvent;
 use craft\services\Utilities;
-use putyourlightson\blitzrecommendations\services\RecommendationsService;
-use putyourlightson\blitzrecommendations\utilities\RecommendationsUtility;
+use putyourlightson\blitztips\services\TipsService;
+use putyourlightson\blitztips\utilities\TipsUtility;
 use yii\base\Event;
 
 /**
- * @property RecommendationsService $recommendations
+ * @property TipsService $tips
  */
-class BlitzRecommendations extends Plugin
+class BlitzTips extends Plugin
 {
     /**
-     * @var BlitzRecommendations
+     * @var BlitzTips
      */
     public static $plugin;
 
@@ -35,7 +35,7 @@ class BlitzRecommendations extends Plugin
         self::$plugin = $this;
 
         $this->setComponents([
-            'recommendations' => RecommendationsService::class,
+            'tips' => TipsService::class,
         ]);
 
         $this->_registerEvents();
@@ -52,7 +52,7 @@ class BlitzRecommendations extends Plugin
             function(CancelableEvent $event) {
                 /** @var ElementQuery $elementQuery */
                 $elementQuery = $event->sender;
-                $this->recommendations->checkElementQuery($elementQuery);
+                $this->tips->checkElementQuery($elementQuery);
             },
             null,
             false
@@ -66,7 +66,7 @@ class BlitzRecommendations extends Plugin
     {
         Event::on(Utilities::class, Utilities::EVENT_REGISTER_UTILITY_TYPES,
             function(RegisterComponentTypesEvent $event) {
-                $event->types[] = RecommendationsUtility::class;
+                $event->types[] = TipsUtility::class;
             }
         );
     }

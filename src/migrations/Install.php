@@ -3,10 +3,10 @@
  * @copyright Copyright (c) PutYourLightsOn
  */
 
-namespace putyourlightson\blitzrecommendations\migrations;
+namespace putyourlightson\blitztips\migrations;
 
 use craft\db\Migration;
-use putyourlightson\blitzrecommendations\records\RecommendationRecord;
+use putyourlightson\blitztips\records\RecommendationRecord;
 use Throwable;
 
 class Install extends Migration

@@ -3,17 +3,17 @@
  * @copyright Copyright (c) PutYourLightsOn
  */
 
-namespace putyourlightson\blitzrecommendations\controllers;
+namespace putyourlightson\blitztips\controllers;
 
 use Craft;
 use craft\web\Controller;
 use yii\web\Response;
-use putyourlightson\blitzrecommendations\BlitzRecommendations;
+use putyourlightson\blitztips\BlitzTips;
 
-class RecommendationsController extends Controller
+class TipsController extends Controller
 {
     /**
-     * Clears all recommendations.
+     * Clears all tips.
      *
      * @return Response
      */
@@ -21,7 +21,7 @@ class RecommendationsController extends Controller
     {
         $this->requirePostRequest();
 
-        BlitzRecommendations::$plugin->recommendations->clearAll();
+        BlitzTips::$plugin->tips->clearAll();
 
         return $this->redirectToPostedUrl();
     }
@@ -37,7 +37,7 @@ class RecommendationsController extends Controller
 
         $id = Craft::$app->getRequest()->getRequiredBodyParam('id');
 
-        BlitzRecommendations::$plugin->recommendations->clear($id);
+        BlitzTips::$plugin->tips->clear($id);
 
         return $this->redirectToPostedUrl();
     }

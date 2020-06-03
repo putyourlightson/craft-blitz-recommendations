@@ -3,14 +3,14 @@
  * @copyright Copyright (c) PutYourLightsOn
  */
 
-namespace putyourlightson\blitzrecommendations\services;
+namespace putyourlightson\blitztips\services;
 
 use Craft;
 use craft\base\Component;
 use craft\base\Field;
 use craft\elements\db\ElementQuery;
-use putyourlightson\blitzrecommendations\models\RecommendationModel;
-use putyourlightson\blitzrecommendations\records\RecommendationRecord;
+use putyourlightson\blitztips\models\RecommendationModel;
+use putyourlightson\blitztips\records\RecommendationRecord;
 use ReflectionClass as ReflectionClassAlias;
 use Twig\Template;
 use Twig\Template as TwigTemplate;
@@ -20,12 +20,12 @@ use yii\base\Application;
  * @property int $total
  * @property RecommendationModel[] $all
  */
-class RecommendationsService extends Component
+class TipsService extends Component
 {
     /**
-     * @var RecommendationModel[] The recommendations to be saved for the current request.
+     * @var RecommendationModel[] The tips to be saved for the current request.
      */
-    private $_recommendations = [];
+    private $_tips = [];
 
     /**
      * @inheritdoc
@@ -38,7 +38,7 @@ class RecommendationsService extends Component
     }
 
     /**
-     * Gets total recommendations.
+     * Gets total tips.
      *
      * @return int
      */
@@ -48,13 +48,13 @@ class RecommendationsService extends Component
     }
 
     /**
-     * Gets all recommendations.
+     * Gets all tips.
      *
      * @return RecommendationModel[]
      */
     public function getAll(): array
     {
-        $recommendations = [];
+        $tips = [];
 
         $recommendationRecords = RecommendationRecord::find()
             ->orderBy(['dateUpdated' => SORT_DESC])
@@ -63,14 +63,14 @@ class RecommendationsService extends Component
         foreach ($recommendationRecords as $record) {
             $recommendation = new RecommendationModel();
             $recommendation->setAttributes($record->getAttributes(), false);
-            $recommendations[] = $recommendation;
+            $tips[] = $recommendation;
         }
 
-        return $recommendations;
+        return $tips;
     }
 
     /**
-     * Clears all recommendations.
+     * Clears all tips.
      */
     public function clearAll()
     {
@@ -116,8 +116,8 @@ class RecommendationsService extends Component
             /** @var Field $field */
             $field = Craft::$app->getFields()->getFieldById($fieldId);
 
-            $message = Craft::t('blitz-recommendations', 'Eager-load the `{fieldName}` field.', ['fieldName' => $field->name]);
-            $info = Craft::t('blitz-recommendations', 'Use the `with` parameter to eager-load sub-elements of the `{fieldName}` field.<br>{example}<br>{link}', [
+            $message = Craft::t('blitz-tips', 'Eager-load the `{fieldName}` field.', ['fieldName' => $field->name]);
+            $info = Craft::t('blitz-tips', 'Use the `with` parameter to eager-load sub-elements of the `{fieldName}` field.<br>{example}<br>{link}', [
                 'fieldName' => $field->name,
                 'example' => '`{% set entries = craft.entries.with([\''.$field->handle.'\']).all() %}`',
                 'link' => '<a href="https://docs.craftcms.com/v3/dev/eager-loading-elements.html" class="go" target="_blank">Docs</a>',
@@ -138,7 +138,7 @@ class RecommendationsService extends Component
     {
         $template = $this->_getTemplate();
 
-        $this->_recommendations[$key.'-'.$template] = new RecommendationModel([
+        $this->_tips[$key.'-'.$template] = new RecommendationModel([
             'key' => $key,
             'template' => $template,
             'message' => $message,
@@ -147,13 +147,13 @@ class RecommendationsService extends Component
     }
 
     /**
-     * Saves recommendations.
+     * Saves tips.
      */
     public function save()
     {
         $db = Craft::$app->getDb();
 
-        foreach ($this->_recommendations as $recommendation) {
+        foreach ($this->_tips as $recommendation) {
             $db->createCommand()
                 ->upsert(
                     RecommendationRecord::tableName(),

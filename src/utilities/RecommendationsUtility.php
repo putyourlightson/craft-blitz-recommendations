@@ -3,20 +3,20 @@
  * @copyright Copyright (c) PutYourLightsOn
  */
 
-namespace putyourlightson\blitzrecommendations\utilities;
+namespace putyourlightson\blitztips\utilities;
 
 use Craft;
 use craft\base\Utility;
-use putyourlightson\blitzrecommendations\BlitzRecommendations;
+use putyourlightson\blitztips\BlitzTips;
 
-class RecommendationsUtility extends Utility
+class TipsUtility extends Utility
 {
     /**
      * @inheritdoc
      */
     public static function displayName(): string
     {
-        return Craft::t('blitz-recommendations', 'Blitz Recommendations');
+        return Craft::t('blitz-tips', 'Blitz Tips');
     }
 
     /**
@@ -24,7 +24,7 @@ class RecommendationsUtility extends Utility
      */
     public static function id(): string
     {
-        return 'blitz-recommendations';
+        return 'blitz-tips';
     }
 
     /**
@@ -32,7 +32,7 @@ class RecommendationsUtility extends Utility
      */
     public static function iconPath()
     {
-        $iconPath = Craft::getAlias('@vendor/putyourlightson/craft-blitz-recommendations/src/icon-mask.svg');
+        $iconPath = Craft::getAlias('@vendor/putyourlightson/craft-blitz-tips/src/icon-mask.svg');
 
         if (!is_string($iconPath)) {
             return null;
@@ -46,7 +46,7 @@ class RecommendationsUtility extends Utility
      */
     public static function badgeCount(): int
     {
-        return BlitzRecommendations::$plugin->recommendations->getTotal();
+        return BlitzTips::$plugin->tips->getTotal();
     }
 
     /**
@@ -54,8 +54,8 @@ class RecommendationsUtility extends Utility
      */
     public static function contentHtml(): string
     {
-        return Craft::$app->getView()->renderTemplate('blitz-recommendations/_utility', [
-            'recommendations' => BlitzRecommendations::$plugin->recommendations->getAll(),
+        return Craft::$app->getView()->renderTemplate('blitz-tips/_utility', [
+            'tips' => BlitzTips::$plugin->tips->getAll(),
         ]);
     }
 }
