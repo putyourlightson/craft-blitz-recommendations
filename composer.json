@@ -1,7 +1,7 @@
 {
     "name": "putyourlightson/craft-blitz-recommendations",
     "description": "Adds a utility that provides templating performance recommendations.",
-    "version": "1.0.0-beta.2",
+    "version": "1.0.0",
     "type": "craft-plugin",
     "license": "mit",
     "require": {
@@ -22,7 +22,7 @@
         "handle": "blitz-recommendations",
         "developer": "PutYourLightsOn",
         "developerUrl": "https://putyourlightson.com/",
-        "documentationUrl": "https://github.com/putyourlightson/craft-blitz-recommendations",
+        "documentationUrl": "https://putyourlightson.com/plugins/blitz-recommendations",
         "changelogUrl": "https://raw.githubusercontent.com/putyourlightson/craft-blitz-recommendations/v1/CHANGELOG.md",
         "class": "putyourlightson\\blitzrecommendations\\BlitzRecommendations"
     }
