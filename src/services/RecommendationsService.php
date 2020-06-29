@@ -9,6 +9,7 @@ use Craft;
 use craft\base\Component;
 use craft\base\Field;
 use craft\elements\db\ElementQuery;
+use craft\elements\db\MatrixBlockQuery;
 use putyourlightson\blitzrecommendations\models\RecommendationModel;
 use putyourlightson\blitzrecommendations\records\RecommendationRecord;
 use ReflectionClass as ReflectionClassAlias;
@@ -96,34 +97,11 @@ class RecommendationsService extends Component
      */
     public function checkElementQuery(ElementQuery $elementQuery)
     {
-        $join = $elementQuery->join[0] ?? null;
-
-        if ($join === null) {
-            return;
+        if ($elementQuery instanceof MatrixBlockQuery) {
+            $this->_checkMatrixRelations($elementQuery);
         }
-
-        /**
-         * This conditional relies on the way that relation fields are loaded.
-         * @see \craft\fields\BaseRelationField::normalizeValue
-         */
-        if ($join[0] == 'INNER JOIN' && $join[1] == ['relations' => '{{%relations}}']) {
-            $fieldId = $join[2][2]['relations.fieldId'] ?? null;
-
-            if (empty($fieldId)) {
-                return;
-            }
-
-            /** @var Field $field */
-            $field = Craft::$app->getFields()->getFieldById($fieldId);
-
-            $message = Craft::t('blitz-recommendations', 'Eager-load the `{fieldName}` field.', ['fieldName' => $field->name]);
-            $info = Craft::t('blitz-recommendations', 'Use the `with` parameter to eager-load sub-elements of the `{fieldName}` field.<br>{example}<br>{link}', [
-                'fieldName' => $field->name,
-                'example' => '`{% set entries = craft.entries.with([\''.$field->handle.'\']).all() %}`',
-                'link' => '<a href="https://docs.craftcms.com/v3/dev/eager-loading-elements.html" class="go" target="_blank">Docs</a>',
-            ]);
-
-            $this->add($fieldId, $message, $info);
+        else {
+            $this->_checkBaseRelations($elementQuery);
         }
     }
 
@@ -199,5 +177,76 @@ class RecommendationsService extends Component
         }
 
         return '';
+    }
+
+    /**
+     * Checks base relations.
+     * @see \craft\fields\BaseRelationField::normalizeValue
+     *
+     * @param ElementQuery $elementQuery
+     */
+    private function _checkBaseRelations(ElementQuery $elementQuery)
+    {
+        $join = $elementQuery->join[0] ?? null;
+
+        if ($join === null) {
+            return;
+        }
+
+        $relationTypes = [
+            ['relations' => '{{%relations}}'],
+            '{{%relations}} relations',
+        ];
+
+        if ($join[0] == 'INNER JOIN' && in_array($join[1], $relationTypes)) {
+            $fieldId = $join[2][2]['relations.fieldId'] ?? null;
+
+            if (empty($fieldId)) {
+                return;
+            }
+
+            $this->_addField($fieldId);
+        }
+    }
+
+    /**
+     * Checks matrix relations.
+     * @see \craft\elements\db\MatrixBlockQuery::beforePrepare
+     *
+     * @param MatrixBlockQuery $elementQuery
+     */
+    private function _checkMatrixRelations(MatrixBlockQuery $elementQuery)
+    {
+        if (empty($elementQuery->fieldId) || empty($elementQuery->ownerId)) {
+            return;
+        }
+
+        $fieldId = is_array($elementQuery->fieldId) ? $elementQuery->fieldId[0] : $elementQuery->fieldId;
+
+        $this->_addField($fieldId);
+    }
+
+    /**
+     * Adds a field recommendation.
+     *
+     * @param int $fieldId
+     */
+    private function _addField(int $fieldId)
+    {
+        /** @var Field $field */
+        $field = Craft::$app->getFields()->getFieldById($fieldId);
+
+        if ($field === null) {
+            return;
+        }
+
+        $message = Craft::t('blitz-recommendations', 'Eager-load the `{fieldName}` field.', ['fieldName' => $field->name]);
+        $info = Craft::t('blitz-recommendations', 'Use the `with` parameter to eager-load sub-elements of the `{fieldName}` field.<br>{example}<br>{link}', [
+            'fieldName' => $field->name,
+            'example' => '`{% set entries = craft.entries.with([\''.$field->handle.'\']).all() %}`',
+            'link' => '<a href="https://docs.craftcms.com/v3/dev/eager-loading-elements.html" class="go" target="_blank">Docs</a>',
+        ]);
+
+        $this->add($fieldId, $message, $info);
     }
 }
