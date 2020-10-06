@@ -50,6 +50,11 @@ class BlitzRecommendations extends Plugin
         // Register element query prepare event
         Event::on(ElementQuery::class, ElementQuery::EVENT_BEFORE_PREPARE,
             function(CancelableEvent $event) {
+                // Ignore CP requests
+                if (Craft::$app->getRequest()->getIsCpRequest()) {
+                    return;
+                }
+
                 /** @var ElementQuery $elementQuery */
                 $elementQuery = $event->sender;
                 $this->recommendations->checkElementQuery($elementQuery);
