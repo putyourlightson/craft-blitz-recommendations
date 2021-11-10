@@ -1,5 +1,9 @@
 # Release Notes for Blitz Recommendations
 
+## 1.3.0 - 2021-11-10
+### Added
+- Added the `blitz-recommendations/recommendations/clear` console command ([#6](https://github.com/putyourlightson/craft-blitz-recommendations/issues/6)).
+
 ## 1.2.0 - 2020-10-06
 ### Changed
 - Disabled recommendations for CP requests ([#4](https://github.com/putyourlightson/craft-blitz-recommendations/issues/4)).
