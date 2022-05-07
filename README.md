@@ -1,3 +1,6 @@
+[![Stable Version](https://img.shields.io/packagist/v/putyourlightson/craft-blitz-recommendations?label=stable)]((https://packagist.org/packages/putyourlightson/craft-blitz-recommendations))
+[![Total Downloads](https://img.shields.io/packagist/dt/putyourlightson/craft-blitz-recommendations)](https://packagist.org/packages/putyourlightson/craft-blitz-recommendations)
+
 <p align="center"><img width="130" src="https://raw.githubusercontent.com/putyourlightson/craft-blitz-recommendations/v1/src/icon.svg"></p>
 
 # Blitz Recommendations Plugin
