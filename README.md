@@ -9,13 +9,11 @@ Adds a utility that provides templating performance recommendations for [Craft C
 
 While this plugin works seamlessly with the [Blitz plugin](https://putyourlightson.com/plugins/blitz), there is no dependency between them. In other words, this plugin can be installed and used for free with _or_ without Blitz. 
 
-![Utility](https://res.cloudinary.com/putyourlightson/image/fetch/f_auto,w_1536/https://putyourlightson.com/assets/images/plugins/blitz-recommendations-utility.png)
-
-![Recommendations](https://res.cloudinary.com/putyourlightson/image/fetch/f_auto,w_768/https://putyourlightson.com/assets/images/plugins/blitz-recommendations.png)
+![Utility](https://putyourlightson.com/assets/images/plugins/blitz-recommendations-2.0.png)
 
 ## Documentation
 
-Learn more and read the documentation at [putyourlightson.com/plugins/blitz-recommendations](https://putyourlightson.com/plugins/blitz-recommendations) »
+Learn more and read the documentation at [putyourlightson.com/plugins/blitz-recommendations »](https://putyourlightson.com/plugins/blitz-recommendations)
 
 ## License
 
