@@ -95,12 +95,12 @@ class RecommendationsService extends Component
     /**
      * Adds a recommendation.
      */
-    public function add(string $key, string $message, string $info = ''): void
+    public function add(int $fieldId, string $message, string $info = ''): void
     {
         [$path, $line] = $this->_getTemplatePathLine();
 
-        $this->_recommendations[$key.'-'.$path] = new RecommendationModel([
-            'key' => $key,
+        $this->_recommendations[$fieldId . '-' . $path] = new RecommendationModel([
+            'key' => $fieldId,
             'template' => $path,
             'line' => $line,
             'message' => $message,
@@ -215,7 +215,6 @@ class RecommendationsService extends Component
      */
     private function _addField(int $fieldId): void
     {
-        /** @var Field $field */
         $field = Craft::$app->getFields()->getFieldById($fieldId);
 
         if ($field === null) {
@@ -225,7 +224,7 @@ class RecommendationsService extends Component
         $message = Craft::t('blitz-recommendations', 'Eager-load the `{fieldName}` field.', ['fieldName' => $field->name]);
         $info = Craft::t('blitz-recommendations', 'Use the `with` parameter to eager-load sub-elements of the `{fieldName}` field.<br>{example}<br>{link}', [
             'fieldName' => $field->name,
-            'example' => '`{% set entries = craft.entries.with([\''.$field->handle.'\']).all() %}`',
+            'example' => '`{% set entries = craft.entries.with([\'' . $field->handle . '\']).all() %}`',
             'link' => '<a href="https://craftcms.com/docs/4.x/dev/eager-loading-elements.html" class="go" target="_blank">Docs</a>',
         ]);
 

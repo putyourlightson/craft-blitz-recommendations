@@ -59,4 +59,3 @@ class RecommendationsUtility extends Utility
         ]);
     }
 }
-

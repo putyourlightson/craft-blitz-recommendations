@@ -6,8 +6,8 @@
 namespace putyourlightson\blitzrecommendations\console\controllers;
 
 use craft\console\Controller;
-use yii\console\ExitCode;
 use putyourlightson\blitzrecommendations\BlitzRecommendations;
+use yii\console\ExitCode;
 use yii\helpers\BaseConsole;
 
 /**
