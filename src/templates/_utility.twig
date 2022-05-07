@@ -35,7 +35,10 @@
                                 <span class="info" style="vertical-align: top;">{{ recommendation.info|md|replace({'<p>': '', '</p>': ''})|raw }}</span>
                             {% endif %}
                         </td>
-                        <td class="code">{{ recommendation.template|e|replace('/', '/<wbr>')|raw }}</td>
+                        <td class="code">
+                            {{ recommendation.template|e|replace('/', '/<wbr>')|raw }}
+                            {{- recommendation.line ? ':' ~ recommendation.line }}
+                        </td>
                         <td>{{ recommendation.dateUpdated|timestamp }}</td>
                         <td>
                             <a class="delete icon formsubmit" data-action="blitz-recommendations/recommendations/clear" data-param="id" data-value="{{ recommendation.id }}" title="{{ 'Delete'|t('app') }}" role="button"></a>

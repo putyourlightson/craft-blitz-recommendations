@@ -1,5 +1,10 @@
 # Release Notes for Blitz Recommendations
 
+## 2.0.0 - 2022-05-07
+### Added
+- Added compatibility with Craft 4.
+- Added line numbers to recommendations ([#7](https://github.com/putyourlightson/craft-blitz-recommendations/issues/7)).
+
 ## 1.3.0 - 2021-11-10
 ### Added
 - Added the `blitz-recommendations/recommendations/clear` console command ([#6](https://github.com/putyourlightson/craft-blitz-recommendations/issues/6)).

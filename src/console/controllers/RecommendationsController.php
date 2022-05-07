@@ -6,9 +6,9 @@
 namespace putyourlightson\blitzrecommendations\console\controllers;
 
 use craft\console\Controller;
-use craft\helpers\Console;
 use yii\console\ExitCode;
 use putyourlightson\blitzrecommendations\BlitzRecommendations;
+use yii\helpers\BaseConsole;
 
 /**
  * Allows you to manage recommendations.
@@ -24,7 +24,7 @@ class RecommendationsController extends Controller
     {
         $this->stdout('Clearing recommendations... ');
         BlitzRecommendations::$plugin->recommendations->clearAll();
-        $this->stdout('done' . PHP_EOL, Console::FG_GREEN);
+        $this->stdout('done' . PHP_EOL, BaseConsole::FG_GREEN);
 
         return ExitCode::OK;
     }

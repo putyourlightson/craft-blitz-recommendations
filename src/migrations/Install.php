@@ -7,12 +7,11 @@ namespace putyourlightson\blitzrecommendations\migrations;
 
 use craft\db\Migration;
 use putyourlightson\blitzrecommendations\records\RecommendationRecord;
-use Throwable;
 
 class Install extends Migration
 {
     /**
-     * @return boolean
+     * @inheritdoc
      */
     public function safeUp(): bool
     {
@@ -21,6 +20,7 @@ class Install extends Migration
                 'id' => $this->primaryKey(),
                 'key' => $this->string()->notNull(),
                 'template' => $this->string(),
+                'line' => $this->integer(),
                 'message' => $this->text(),
                 'info' => $this->text(),
                 'dateCreated' => $this->dateTime()->notNull(),
@@ -35,8 +35,7 @@ class Install extends Migration
     }
 
     /**
-     * @return boolean
-     * @throws Throwable
+     * @inheritdoc
      */
     public function safeDown(): bool
     {

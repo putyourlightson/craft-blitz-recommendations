@@ -13,30 +13,35 @@ class RecommendationModel extends Model
     /**
      * @var int|null
      */
-    public $id;
+    public ?int $id;
 
     /**
      * @var string|null
      */
-    public $key;
+    public ?string $key;
 
     /**
      * @var string|null
      */
-    public $template;
+    public ?string $template;
 
     /**
      * @var string|null
      */
-    public $message;
+    public ?string $line;
 
     /**
      * @var string|null
      */
-    public $info;
+    public ?string $message;
 
     /**
-     * @var DateTime
+     * @var string|null
      */
-    public $dateUpdated;
+    public ?string $info;
+
+    /**
+     * @var DateTime|null
+     */
+    public ?DateTime $dateUpdated;
 }

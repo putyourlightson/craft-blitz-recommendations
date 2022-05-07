@@ -2,8 +2,6 @@
 
 # Blitz Recommendations Plugin
 
-> Note that this plugin has not been updated to fully support Craft 3.5 and may result in false negatives.
-
 Adds a utility that provides templating performance recommendations for [Craft CMS](https://craftcms.com/).
 
 While this plugin works seamlessly with the [Blitz plugin](https://putyourlightson.com/plugins/blitz), there is no dependency between them. In other words, this plugin can be installed and used for free with _or_ without Blitz. 
@@ -22,13 +20,13 @@ This plugin is licensed for free under the MIT License.
 
 ## Requirements
 
-Craft CMS 3.0.0 or later.
+This plugin requires [Craft CMS](https://craftcms.com/) 3.0.0 or later, or 4.0.0 or later.
 
 ## Installation
 
 To install the plugin, search for “Blitz Recommendations” in the Craft Plugin Store, or install manually using composer.
 
-```
+```shell
 composer require putyourlightson/craft-blitz-recommendations
 ```
 

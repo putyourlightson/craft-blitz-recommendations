@@ -30,7 +30,7 @@ class RecommendationsUtility extends Utility
     /**
      * @inheritdoc
      */
-    public static function iconPath()
+    public static function iconPath(): ?string
     {
         $iconPath = Craft::getAlias('@vendor/putyourlightson/craft-blitz-recommendations/src/icon-mask.svg');
 

@@ -3,6 +3,10 @@
  * @copyright Copyright (c) PutYourLightsOn
  */
 
+/**
+ * @noinspection PhpInternalEntityUsedInspection
+ */
+
 namespace putyourlightson\blitzrecommendations\services;
 
 use Craft;
@@ -10,12 +14,11 @@ use craft\base\Component;
 use craft\base\Field;
 use craft\elements\db\ElementQuery;
 use craft\elements\db\MatrixBlockQuery;
+use craft\services\Deprecator;
 use putyourlightson\blitzrecommendations\models\RecommendationModel;
 use putyourlightson\blitzrecommendations\records\RecommendationRecord;
 use ReflectionClass as ReflectionClassAlias;
 use Twig\Template;
-use Twig\Template as TwigTemplate;
-use yii\base\Application;
 
 /**
  * @property int $total
@@ -26,22 +29,10 @@ class RecommendationsService extends Component
     /**
      * @var RecommendationModel[] The recommendations to be saved for the current request.
      */
-    private $_recommendations = [];
-
-    /**
-     * @inheritdoc
-     */
-    public function init()
-    {
-        Craft::$app->on(Application::EVENT_AFTER_REQUEST, [$this, 'save'], null, false);
-
-        parent::init();
-    }
+    private array $_recommendations = [];
 
     /**
      * Gets total recommendations.
-     *
-     * @return int
      */
     public function getTotal(): int
     {
@@ -73,17 +64,15 @@ class RecommendationsService extends Component
     /**
      * Clears all recommendations.
      */
-    public function clearAll()
+    public function clearAll(): void
     {
         RecommendationRecord::deleteAll();
     }
 
     /**
      * Clears a recommendation.
-     *
-     * @param int $id
      */
-    public function clear(int $id)
+    public function clear(int $id): void
     {
         RecommendationRecord::deleteAll([
             'id' => $id,
@@ -92,10 +81,8 @@ class RecommendationsService extends Component
 
     /**
      * Checks for opportunities to eager-loading elements.
-     *
-     * @param ElementQuery $elementQuery
      */
-    public function checkElementQuery(ElementQuery $elementQuery)
+    public function checkElementQuery(ElementQuery $elementQuery): void
     {
         if ($elementQuery instanceof MatrixBlockQuery) {
             $this->_checkMatrixRelations($elementQuery);
@@ -107,18 +94,15 @@ class RecommendationsService extends Component
 
     /**
      * Adds a recommendation.
-     *
-     * @param string $key
-     * @param string $message
-     * @param string|null $info
      */
-    public function add(string $key, string $message, string $info = '')
+    public function add(string $key, string $message, string $info = ''): void
     {
-        $template = $this->_getTemplate();
+        [$path, $line] = $this->_getTemplatePathLine();
 
-        $this->_recommendations[$key.'-'.$template] = new RecommendationModel([
+        $this->_recommendations[$key.'-'.$path] = new RecommendationModel([
             'key' => $key,
-            'template' => $template,
+            'template' => $path,
+            'line' => $line,
             'message' => $message,
             'info' => $info,
         ]);
@@ -126,8 +110,10 @@ class RecommendationsService extends Component
 
     /**
      * Saves recommendations.
+     *
+     * @noinspection MissedFieldInspection
      */
-    public function save()
+    public function save(): void
     {
         $db = Craft::$app->getDb();
 
@@ -138,9 +124,13 @@ class RecommendationsService extends Component
                     [
                         'key' => $recommendation->key,
                         'template' => $recommendation->template,
+                        'line' => $recommendation->line,
+                        'message' => $recommendation->message,
+                        'info' => $recommendation->info,
                     ],
                     [
                         'template' => $recommendation->template,
+                        'line' => $recommendation->line,
                         'message' => $recommendation->message,
                         'info' => $recommendation->info,
                     ])
@@ -149,11 +139,9 @@ class RecommendationsService extends Component
     }
 
     /**
-     * Returns path to the currently rendered template.
-     *
-     * @return string
+     * Returns the path and line number of the rendered template.
      */
-    private function _getTemplate(): string
+    private function _getTemplatePathLine(): array
     {
         // Get the debug backtrace
         $traces = debug_backtrace();
@@ -166,26 +154,24 @@ class RecommendationsService extends Component
             if (!empty($trace['file']) && $trace['file'] == $filename) {
                 $template = $trace['object'] ?? null;
 
-                if ($template instanceof TwigTemplate) {
-                    $templateName = $template->getTemplateName();
+                if ($template instanceof Template) {
+                    $path = $template->getSourceContext()->getPath();
+                    $templateCodeLine = $traces[$key - 1]['line'] ?? null;
+                    $line = $this->_findTemplateLine($template, $templateCodeLine);
 
-                    return Craft::$app->getView()->resolveTemplate($templateName) ?: $templateName;
+                    return [$path, $line];
                 }
-
-                return '';
             }
         }
 
-        return '';
+        return ['', null];
     }
 
     /**
      * Checks base relations.
      * @see \craft\fields\BaseRelationField::normalizeValue
-     *
-     * @param ElementQuery $elementQuery
      */
-    private function _checkBaseRelations(ElementQuery $elementQuery)
+    private function _checkBaseRelations(ElementQuery $elementQuery): void
     {
         $join = $elementQuery->join[0] ?? null;
 
@@ -212,10 +198,8 @@ class RecommendationsService extends Component
     /**
      * Checks matrix relations.
      * @see \craft\elements\db\MatrixBlockQuery::beforePrepare
-     *
-     * @param MatrixBlockQuery $elementQuery
      */
-    private function _checkMatrixRelations(MatrixBlockQuery $elementQuery)
+    private function _checkMatrixRelations(MatrixBlockQuery $elementQuery): void
     {
         if (empty($elementQuery->fieldId) || empty($elementQuery->ownerId)) {
             return;
@@ -228,10 +212,8 @@ class RecommendationsService extends Component
 
     /**
      * Adds a field recommendation.
-     *
-     * @param int $fieldId
      */
-    private function _addField(int $fieldId)
+    private function _addField(int $fieldId): void
     {
         /** @var Field $field */
         $field = Craft::$app->getFields()->getFieldById($fieldId);
@@ -244,9 +226,30 @@ class RecommendationsService extends Component
         $info = Craft::t('blitz-recommendations', 'Use the `with` parameter to eager-load sub-elements of the `{fieldName}` field.<br>{example}<br>{link}', [
             'fieldName' => $field->name,
             'example' => '`{% set entries = craft.entries.with([\''.$field->handle.'\']).all() %}`',
-            'link' => '<a href="https://docs.craftcms.com/v3/dev/eager-loading-elements.html" class="go" target="_blank">Docs</a>',
+            'link' => '<a href="https://craftcms.com/docs/4.x/dev/eager-loading-elements.html" class="go" target="_blank">Docs</a>',
         ]);
 
         $this->add($fieldId, $message, $info);
+    }
+
+    /**
+     * Returns the template line number.
+     *
+     * @see Deprecator::_findTemplateLine()
+     */
+    private function _findTemplateLine(Template $template, int $actualCodeLine = null)
+    {
+        if ($actualCodeLine === null) {
+            return null;
+        }
+
+        // getDebugInfo() goes upward, so the first code line that's <= the trace line will be the match
+        foreach ($template->getDebugInfo() as $codeLine => $templateLine) {
+            if ($codeLine <= $actualCodeLine) {
+                return $templateLine;
+            }
+        }
+
+        return null;
     }
 }
