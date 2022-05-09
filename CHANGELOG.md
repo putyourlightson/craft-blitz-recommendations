@@ -1,5 +1,9 @@
 # Release Notes for Blitz Recommendations
 
+## 2.0.1 - 2022-05-09
+### Fixed
+- Fixed an error on the recommendations utility page after updating from version 1 ([#10](https://github.com/putyourlightson/craft-blitz-recommendations/issues/10)).
+
 ## 2.0.0 - 2022-05-07
 ### Added
 - Added compatibility with Craft 4.
