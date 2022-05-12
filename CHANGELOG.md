@@ -1,5 +1,9 @@
 # Release Notes for Blitz Recommendations
 
+## 2.1.0 - Unreleased
+### Changed
+- Split out the core functionality and utility into the [Blitz Hints](https://github.com/putyourlightson/craft-blitz-hints) package.
+
 ## 2.0.1 - 2022-05-09
 ### Fixed
 - Fixed an error on the recommendations utility page after updating from version 1 ([#10](https://github.com/putyourlightson/craft-blitz-recommendations/issues/10)).

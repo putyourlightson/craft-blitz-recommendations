@@ -6,7 +6,7 @@
 namespace putyourlightson\blitzrecommendations\migrations;
 
 use craft\db\Migration;
-use putyourlightson\blitzrecommendations\records\RecommendationRecord;
+use putyourlightson\blitzhints\migrations\Install as HintsInstall;
 
 class Install extends Migration
 {
@@ -15,23 +15,7 @@ class Install extends Migration
      */
     public function safeUp(): bool
     {
-        if (!$this->db->tableExists(RecommendationRecord::tableName())) {
-            $this->createTable(RecommendationRecord::tableName(), [
-                'id' => $this->primaryKey(),
-                'key' => $this->string()->notNull(),
-                'template' => $this->string(),
-                'line' => $this->integer(),
-                'message' => $this->text(),
-                'info' => $this->text(),
-                'dateCreated' => $this->dateTime()->notNull(),
-                'dateUpdated' => $this->dateTime()->notNull(),
-                'uid' => $this->uid(),
-            ]);
-
-            $this->createIndex(null, RecommendationRecord::tableName(), ['key', 'template'], true);
-        }
-
-        return true;
+        return (new HintsInstall())->safeUp();
     }
 
     /**
@@ -39,8 +23,6 @@ class Install extends Migration
      */
     public function safeDown(): bool
     {
-        $this->dropTableIfExists(RecommendationRecord::tableName());
-
-        return true;
+        return (new HintsInstall())->safeDown();
     }
 }

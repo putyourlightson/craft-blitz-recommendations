@@ -5,20 +5,20 @@ namespace putyourlightson\blitzrecommendations\migrations;
 use craft\db\Migration;
 use putyourlightson\blitzhints\records\HintRecord;
 
-class m220507_120000_add_line_column extends Migration
+class m220512_120000_rename_table extends Migration
 {
     /**
      * @inheritdoc
      */
     public function safeUp(): bool
     {
-        if (!$this->db->columnExists(HintRecord::tableName(), 'line')) {
-            $this->addColumn(
-                HintRecord::tableName(),
-                'line',
-                $this->integer()->after('template'),
-            );
+        $oldTableName = '{{%blitz_recommendations}}';
+
+        if (!$this->db->tableExists(HintRecord::tableName())) {
+            $this->renameTable($oldTableName, HintRecord::tableName());
         }
+
+        $this->dropTableIfExists($oldTableName);
 
         return true;
     }
