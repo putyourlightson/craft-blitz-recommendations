@@ -3,11 +3,11 @@
 
 <p align="center"><img width="130" src="https://raw.githubusercontent.com/putyourlightson/craft-blitz-recommendations/develop/src/icon.svg"></p>
 
-# Blitz Recommendations Plugin
+# Blitz Recommendations Plugin for Craft CMS
 
 Adds a utility that provides templating performance hints for [Craft CMS](https://craftcms.com/).
 
-While this plugin works seamlessly with the [Blitz plugin](https://putyourlightson.com/plugins/blitz), there is no dependency between them. In other words, this plugin can be installed and used for free with _or_ without Blitz. 
+While this plugin works seamlessly with the [Blitz](https://putyourlightson.com/plugins/blitz) plugin, there is no dependency on it. In other words, this plugin can be installed and used independently and for free _without_ Blitz. 
 
 ![Utility](https://putyourlightson.com/assets/images/plugins/blitz-recommendations-2.0.png)
 
