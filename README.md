@@ -1,19 +1,19 @@
-[![Stable Version](https://img.shields.io/packagist/v/putyourlightson/craft-blitz-hints?label=stable)]((https://packagist.org/packages/putyourlightson/craft-blitz-hints))
-[![Total Downloads](https://img.shields.io/packagist/dt/putyourlightson/craft-blitz-hints)](https://packagist.org/packages/putyourlightson/craft-blitz-hints)
+[![Stable Version](https://img.shields.io/packagist/v/putyourlightson/craft-blitz-recommendations?label=stable)]((https://packagist.org/packages/putyourlightson/craft-blitz-recommendations))
+[![Total Downloads](https://img.shields.io/packagist/dt/putyourlightson/craft-blitz-recommendations)](https://packagist.org/packages/putyourlightson/craft-blitz-recommendations)
 
-<p align="center"><img width="130" src="https://raw.githubusercontent.com/putyourlightson/craft-blitz-hints/develop/src/icon.svg"></p>
+<p align="center"><img width="130" src="https://raw.githubusercontent.com/putyourlightson/craft-blitz-recommendations/develop/src/icon.svg"></p>
 
-# Blitz Hints Plugin
+# Blitz Recommendations Plugin
 
 Adds a utility that provides templating performance hints for [Craft CMS](https://craftcms.com/).
 
 While this plugin works seamlessly with the [Blitz plugin](https://putyourlightson.com/plugins/blitz), there is no dependency between them. In other words, this plugin can be installed and used for free with _or_ without Blitz. 
 
-![Utility](https://putyourlightson.com/assets/images/plugins/blitz-hints-2.0.png)
+![Utility](https://putyourlightson.com/assets/images/plugins/blitz-recommendations-2.0.png)
 
 ## Documentation
 
-Learn more and read the documentation at [putyourlightson.com/plugins/blitz-hints »](https://putyourlightson.com/plugins/blitz-hints)
+Learn more and read the documentation at [putyourlightson.com/plugins/blitz-recommendations »](https://putyourlightson.com/plugins/blitz-recommendations)
 
 ## License
 
@@ -25,10 +25,10 @@ This plugin requires [Craft CMS](https://craftcms.com/) 3.0.0 or later, or 4.0.0
 
 ## Installation
 
-To install the plugin, search for “Blitz Hints” in the Craft Plugin Store, or install manually using composer.
+To install the plugin, search for “Blitz Recommendations” in the Craft Plugin Store, or install manually using composer.
 
 ```shell
-composer require putyourlightson/craft-blitz-hints
+composer require putyourlightson/craft-blitz-recommendations
 ```
 
 ---
