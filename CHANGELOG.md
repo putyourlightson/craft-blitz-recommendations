@@ -1,8 +1,8 @@
 # Release Notes for Blitz Recommendations
 
-## 2.1.0 - Unreleased
+## 2.1.0 - 2022-05-16
 ### Changed
-- Split out the core functionality and utility into the [Blitz Hints](https://github.com/putyourlightson/craft-blitz-hints) package.
+- Split out the core functionality and utility into the [Blitz Hints](https://github.com/putyourlightson/craft-blitz-hints) package, [read the announcement](https://putyourlightson.com/articles/ballroom-blitz).
 
 ## 2.0.1 - 2022-05-09
 ### Fixed
