@@ -1,5 +1,9 @@
 # Release Notes for Blitz Recommendations
 
+## 2.1.1 - 2022-05-16
+### Changed
+- Bumped the required version of the Blitz Hints package.
+
 ## 2.1.0 - 2022-05-16
 ### Changed
 - Split out the core functionality and utility into the [Blitz Hints](https://github.com/putyourlightson/craft-blitz-hints) package, [read the announcement](https://putyourlightson.com/articles/ballroom-blitz).
