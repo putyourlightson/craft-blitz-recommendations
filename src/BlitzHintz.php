@@ -3,12 +3,12 @@
  * @copyright Copyright (c) PutYourLightsOn
  */
 
-namespace putyourlightson\blitzrecommendations;
+namespace putyourlightson\blitzhintz;
 
 use craft\base\Plugin;
 use putyourlightson\blitzhints\BlitzHints;
 
-class BlitzRecommendations extends Plugin
+class BlitzHintz extends Plugin
 {
     /**
      * @inheritdoc
