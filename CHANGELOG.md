@@ -1,10 +1,4 @@
-# Release Notes for Blitz Hintz
-
-## 2.2.0 - 2022-10-31
-
-### Changed
-
-- Renamed the plugin to Blitz Hintz.
+# Release Notes for Blitz Recommendations
 
 ## 2.1.1 - 2022-05-16
 

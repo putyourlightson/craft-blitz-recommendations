@@ -1,6 +1,6 @@
 <?php
 
-namespace putyourlightson\blitzhintz\migrations;
+namespace putyourlightson\blitzrecommendations\migrations;
 
 use craft\db\Migration;
 

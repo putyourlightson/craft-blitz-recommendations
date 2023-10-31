@@ -1,14 +1,15 @@
 <?php
+
 /**
  * @copyright Copyright (c) PutYourLightsOn
  */
 
-namespace putyourlightson\blitzhintz;
+namespace putyourlightson\blitzrecommendations;
 
 use craft\base\Plugin;
-use putyourlightson\blitzhints\BlitzHints;
+use putyourlightson\blitzhints\BlitzRecommendations;
 
-class BlitzHintz extends Plugin
+class BlitzRecommendations extends Plugin
 {
     /**
      * @inheritdoc
@@ -22,6 +23,6 @@ class BlitzHintz extends Plugin
     {
         parent::init();
 
-        BlitzHints::bootstrap();
+        BlitzRecommendations::bootstrap();
     }
 }

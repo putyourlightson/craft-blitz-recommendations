@@ -3,7 +3,7 @@
  * @copyright Copyright (c) PutYourLightsOn
  */
 
-namespace putyourlightson\blitzhintz\migrations;
+namespace putyourlightson\blitzrecommendations\migrations;
 
 use Craft;
 use craft\db\Migration;

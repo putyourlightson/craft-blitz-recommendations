@@ -1,7 +1,7 @@
 {
-  "name": "putyourlightson/craft-blitz-hintz",
-  "description": "Adds a utility that provides templating performance hints.",
-  "version": "2.2.0",
+  "name": "putyourlightson/craft-blitz-recommendations",
+  "description": "Adds a utility that provides templating performance recommendations.",
+  "version": "2.1.1",
   "type": "craft-plugin",
   "license": "mit",
   "require": {
@@ -11,21 +11,21 @@
   },
   "autoload": {
     "psr-4": {
-      "putyourlightson\\blitzhintz\\": "src/"
+      "putyourlightson\\blitzrecommendations\\": "src/"
     }
   },
   "support": {
-    "docs": "https://putyourlightson.com/plugins/blitz-hintz",
-    "source": "https://github.com/putyourlightson/craft-blitz-hintz",
-    "issues": "https://github.com/putyourlightson/craft-blitz-hintz/issues"
+    "docs": "https://putyourlightson.com/plugins/blitz-recommendations",
+    "source": "https://github.com/putyourlightson/craft-blitz-recommendations",
+    "issues": "https://github.com/putyourlightson/craft-blitz-recommendations/issues"
   },
   "extra": {
-    "name": "Blitz Hintz",
+    "name": "Blitz Recommendations",
     "handle": "blitz-recommendations",
     "developer": "PutYourLightsOn",
     "developerUrl": "https://putyourlightson.com/",
-    "documentationUrl": "https://putyourlightson.com/plugins/blitz-hintz",
-    "changelogUrl": "https://raw.githubusercontent.com/putyourlightson/craft-blitz-hintz/v2/CHANGELOG.md",
-    "class": "putyourlightson\\blitzhintz\\BlitzHintz"
+    "documentationUrl": "https://putyourlightson.com/plugins/blitz-recommendations",
+    "changelogUrl": "https://raw.githubusercontent.com/putyourlightson/craft-blitz-recommendations/v2/CHANGELOG.md",
+    "class": "putyourlightson\\blitzrecommendations\\BlitzRecommendations"
   }
 }
