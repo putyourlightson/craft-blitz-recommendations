@@ -1,6 +1,6 @@
 # Release Notes for Blitz Recommendations
 
-## 2.1.1 - 2023-11-01
+## 2.1.2 - 2023-11-01
 
 ### Changed
 
