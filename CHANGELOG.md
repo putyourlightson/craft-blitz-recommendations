@@ -1,5 +1,12 @@
 # Release Notes for Blitz Recommendations
 
+## 2.1.1 - 2023-11-01
+
+### Changed
+
+- Changed the plugin icon to match the Blitz Hints package.
+- Bumped the required version of the Blitz Hints package.
+
 ## 2.1.1 - 2022-05-16
 
 ### Changed
