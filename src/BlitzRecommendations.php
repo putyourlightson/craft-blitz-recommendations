@@ -7,7 +7,7 @@
 namespace putyourlightson\blitzrecommendations;
 
 use craft\base\Plugin;
-use putyourlightson\blitzhints\BlitzRecommendations;
+use putyourlightson\blitzhints\BlitzHints;
 
 class BlitzRecommendations extends Plugin
 {
@@ -19,10 +19,10 @@ class BlitzRecommendations extends Plugin
     /**
      * @inheritdoc
      */
-    public function init()
+    public function init(): void
     {
         parent::init();
 
-        BlitzRecommendations::bootstrap();
+        BlitzHints::bootstrap();
     }
 }
