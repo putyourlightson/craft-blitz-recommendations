@@ -1,4 +1,4 @@
-# Release Notes for Hintz
+# Release Notes for Blitz Recommendations
 
 ## 2.2.0 - 2024-03-11
 
