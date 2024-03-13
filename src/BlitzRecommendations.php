@@ -14,7 +14,7 @@ class BlitzRecommendations extends Plugin
     /**
      * @inheritdoc
      */
-    public string $schemaVersion = '2.1.0';
+    public string $schemaVersion = '2.2.0';
 
     /**
      * @inheritdoc

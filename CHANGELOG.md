@@ -1,5 +1,11 @@
 # Release Notes for Blitz Recommendations
 
+## 2.2.1 - 2024-03-12
+
+### Fixed
+
+- Fixed the schema version that was not updated in version 2.2.0. 
+
 ## 2.2.0 - 2024-03-11
 
 ### Added
