@@ -5,6 +5,8 @@
 
 # Blitz Recommendations Plugin for Craft CMS
 
+> This plugin has been discontinued and will not be available for Craft 5. Use the [Blitz Hints utility](https://putyourlightson.com/plugins/blitz#hints-utility) or the [Elements Panel plugin](https://putyourlightson.com/plugins/elements-panel) instead.
+
 Adds a utility that provides templating performance hints for [Craft CMS](https://craftcms.com/).
 
 While this plugin works seamlessly with the [Blitz](https://putyourlightson.com/plugins/blitz) plugin, there is no dependency on it. In other words, this plugin can be installed and used independently and for free _without_ Blitz. 
